@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://e6nv4wlbaxne"]
+[gd_scene load_steps=5 format=3 uid="uid://e6nv4wlbaxne"]
 
 [ext_resource type="Script" uid="uid://d1sutdaed1jc6" path="res://scripts/CollectionSelector.cs" id="1_ahhtf"]
 [ext_resource type="Script" uid="uid://cgm0lgn1dcbws" path="res://scripts/CollectionItemList.cs" id="2_oo0fn"]
+[ext_resource type="FontFile" uid="uid://gv6evl26f1u5" path="res://fonts/jetbrains-mono/JetBrainsMono-Regular.ttf" id="3_5ysmq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fi6k"]
+bg_color = Color(0, 1, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -42,7 +50,7 @@ max_columns = 2
 script = ExtResource("2_oo0fn")
 
 [node name="UtilsMarginContainer" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(256, 64)
+custom_minimum_size = Vector2(276, 80)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -58,8 +66,57 @@ theme_override_constants/margin_bottom = 10
 [node name="PanelContainer" type="PanelContainer" parent="UtilsMarginContainer"]
 layout_mode = 2
 
+[node name="HBoxContainer" type="HBoxContainer" parent="UtilsMarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UtilsMarginContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UtilsMarginContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_bottom = 4
+
+[node name="ElapsedTimeContainer" type="HBoxContainer" parent="UtilsMarginContainer/PanelContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="StatusDot" type="Panel" parent="UtilsMarginContainer/PanelContainer/HBoxContainer/VBoxContainer/MarginContainer/ElapsedTimeContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_6fi6k")
+
+[node name="ElapsedTime" type="Label" parent="UtilsMarginContainer/PanelContainer/HBoxContainer/VBoxContainer/MarginContainer/ElapsedTimeContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_5ysmq")
+text = "00:00:00"
+
+[node name="SimSpeedField" type="SpinBox" parent="UtilsMarginContainer/PanelContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+step = 0.5
+suffix = "x speed"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UtilsMarginContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="PlayPauseButton" type="Button" parent="UtilsMarginContainer/PanelContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ResetButton" type="Button" parent="UtilsMarginContainer/PanelContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
 [node name="ClearMarginContainer" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -77,5 +134,11 @@ theme_override_constants/margin_bottom = 10
 
 [node name="PanelContainer" type="PanelContainer" parent="ClearMarginContainer"]
 layout_mode = 2
+
+[node name="ClearButton" type="Button" parent="ClearMarginContainer/PanelContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [connection signal="item_selected" from="ItemsMarginContainer/VBoxContainer/CollectionSelector" to="ItemsMarginContainer/VBoxContainer/CollectionSelector" method="_OnItemSelected"]
