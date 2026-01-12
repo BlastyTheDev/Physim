@@ -12,9 +12,26 @@ config_version=5
 
 config/name="Physim"
 run/main_scene="uid://dxxyv6g4a7gq6"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="Physim"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+
+[physics]
+
+2d/default_gravity=0.0
+2d/default_gravity_vector=Vector2(0, 0)
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.1909, 0.1909, 0.23, 1)
