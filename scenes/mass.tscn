@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c3u7dtsi4yxmf"]
+
+[node name="Mass" type="RigidBody2D"]
+can_sleep = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

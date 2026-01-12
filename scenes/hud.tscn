@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://e6nv4wlbaxne"]
+
+[ext_resource type="Script" uid="uid://d1sutdaed1jc6" path="res://scripts/CollectionSelector.cs" id="1_ahhtf"]
+[ext_resource type="Script" uid="uid://cgm0lgn1dcbws" path="res://scripts/CollectionItemList.cs" id="2_oo0fn"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemsMarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemsMarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CollectionSelector" type="OptionButton" parent="ItemsMarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+selected = 0
+item_count = 1
+popup/item_0/text = "Motion"
+popup/item_0/id = 0
+script = ExtResource("1_ahhtf")
+
+[node name="CollectionItemList" type="ItemList" parent="ItemsMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+max_columns = 2
+script = ExtResource("2_oo0fn")
+
+[node name="UtilsMarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_top = -40.0
+offset_right = 296.0
+grow_vertical = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="UtilsMarginContainer"]
+layout_mode = 2
+
+[node name="ClearMarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="ClearMarginContainer"]
+layout_mode = 2
+
+[connection signal="item_selected" from="ItemsMarginContainer/VBoxContainer/CollectionSelector" to="ItemsMarginContainer/VBoxContainer/CollectionSelector" method="_OnItemSelected"]
