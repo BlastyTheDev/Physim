@@ -1,11 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://e6nv4wlbaxne"]
+[gd_scene load_steps=11 format=3 uid="uid://e6nv4wlbaxne"]
 
 [ext_resource type="Script" uid="uid://d1sutdaed1jc6" path="res://scripts/CollectionSelector.cs" id="1_ahhtf"]
 [ext_resource type="Script" uid="uid://cgm0lgn1dcbws" path="res://scripts/CollectionItemList.cs" id="2_oo0fn"]
 [ext_resource type="FontFile" uid="uid://gv6evl26f1u5" path="res://fonts/jetbrains-mono/JetBrainsMono-Regular.ttf" id="3_5ysmq"]
+[ext_resource type="Texture2D" uid="uid://bteny7sa8xbij" path="res://sprites/icons/delete.svg" id="4_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://b0ccddvv2iwri" path="res://sprites/icons/play_arrow.svg" id="4_047uy"]
+[ext_resource type="Texture2D" uid="uid://cqloxtgs5b3s1" path="res://sprites/icons/replay.svg" id="5_5pdws"]
+[ext_resource type="Script" uid="uid://brng812kskta6" path="res://scripts/PlayPauseButton.cs" id="5_hd3ao"]
+[ext_resource type="Script" uid="uid://xuqrw40sgqbw" path="res://scripts/ResetButton.cs" id="7_hd3ao"]
+[ext_resource type="Script" uid="uid://boifwehcwfntl" path="res://scripts/ClearButton.cs" id="9_0i1j5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6fi6k"]
-bg_color = Color(0, 1, 0, 1)
+bg_color = Color(1, 0, 0, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -98,6 +104,7 @@ text = "00:00:00"
 custom_minimum_size = Vector2(144, 0)
 layout_mode = 2
 step = 0.5
+value = 1.0
 suffix = "x speed"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UtilsMarginContainer/PanelContainer/HBoxContainer"]
@@ -108,12 +115,18 @@ custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+icon = ExtResource("4_047uy")
+icon_alignment = 1
+script = ExtResource("5_hd3ao")
 
 [node name="ResetButton" type="Button" parent="UtilsMarginContainer/PanelContainer/HBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+icon = ExtResource("5_5pdws")
+icon_alignment = 1
+script = ExtResource("7_hd3ao")
 
 [node name="ClearMarginContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(80, 80)
@@ -140,5 +153,8 @@ custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+icon = ExtResource("4_6fi6k")
+icon_alignment = 1
+script = ExtResource("9_0i1j5")
 
 [connection signal="item_selected" from="ItemsMarginContainer/VBoxContainer/CollectionSelector" to="ItemsMarginContainer/VBoxContainer/CollectionSelector" method="_OnItemSelected"]
